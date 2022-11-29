@@ -28,10 +28,12 @@ public class IronLibraryApplication implements CommandLineRunner {
 	BookRepository bookRepository;
 
 	Book book1;
+	Book book2;
 
 	@Autowired
 	AuthorRepository authorRepository;
 	Author author1;
+	Author author2;
 
 	@Autowired
 	IssueRepository issueRepository;
@@ -39,7 +41,7 @@ public class IronLibraryApplication implements CommandLineRunner {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(IronLibraryApplication.class, args);
-		Menu.menuStart();
+
 	}
 
 	@Override
@@ -51,16 +53,24 @@ public class IronLibraryApplication implements CommandLineRunner {
 		));
 
 		authorRepository.saveAll(List.of(
-				author1 = new Author("Jack Kerouac","irob@ironlibrary.com", new ArrayList<>())
+				author1 = new Author("Jack Kerouac","irob@ironlibrary.com", new ArrayList<>()),
+				author2 = new Author("Malcolm Lowry","irob@ironlibrary.com", new ArrayList<>())
+
 		));
 
 		bookRepository.saveAll(List.of(
-				book1 = new Book("0-7645-2641-3", "On The Road", "Novel", 12, author1)
+				book1 = new Book("0-7645-2641-3", "On The Road", "Novel", 12, author1),
+				book2 = new Book("0-7645-2641-3", "Under the Volcano", "Novel", 12, author2)
+
 		));
 
 		issueRepository.saveAll(List.of(
 				issue = new Issue("01/12/2022","08/12/2022", student, book1)
 		));
+
+		Menu.menuStart(authorRepository, studentRepository, bookRepository,issueRepository);
+
+		//habrá que añadir el resto de repsositorios
 
 	}
 }

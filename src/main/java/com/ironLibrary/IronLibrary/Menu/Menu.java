@@ -1,14 +1,23 @@
 package com.ironLibrary.IronLibrary.Menu;
 import com.ironLibrary.IronLibrary.Library.Library;
+import com.ironLibrary.IronLibrary.Repositories.AuthorRepository;
+import com.ironLibrary.IronLibrary.Repositories.BookRepository;
+import com.ironLibrary.IronLibrary.Repositories.IssueRepository;
+import com.ironLibrary.IronLibrary.Repositories.StudentRepository;
+
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
 
-    static Library library = new Library();
+    static Library library;
 
-    public static void menuStart() throws IOException {
+    public static void menuStart(AuthorRepository authorRepository1, StudentRepository studentRepository1, BookRepository bookRepository1, IssueRepository issueRepository1) throws IOException {
+        library = new Library(authorRepository1,studentRepository1, bookRepository1, issueRepository1);
+        System.out.println("  ");
+        System.out.println("  ");
+
         System.out.println("Welcome to the Iron Library App");
         menuSelectOption();
     }
@@ -129,8 +138,8 @@ public class Menu {
                         case 1 -> library.addBookData();
                         case 2 -> library.searchBookByTitle();
                         case 3 -> library.searchBookByCategory();
-                        case 4 -> library.seacrhBookByAuthor();
-                        case 5 -> library.listAllbooksAlongWithAutor();
+                        case 4 -> library.searchBookByAuthor();
+                        case 5 -> library.listAllBooksAlongWithAuthor();
                         case 6 -> library.issueBookToStudent();
                         case 7 -> library.listBooksByUsn();
                         default -> throw new IllegalStateException("Please enter a valid number " + opcCommand);

@@ -14,29 +14,41 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Library {
 
-    @Autowired
     BookRepository bookRepository;
 
-    @Autowired
+
     StudentRepository studentRepository;
 
-    @Autowired
+
     AuthorRepository authorRepository;
 
-    @Autowired
+
     IssueRepository issueRepository;
+
+
 
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
     Scanner scanner = new Scanner(System.in);
-    Book book1;
-    Student student1;
-    Issue issue1;
-    Author author1;
-    public Library() {
+    Book book1 = new Book();
+    Student student1= new Student();
+    Issue issue1 = new Issue();
+    Author author1 = new Author();
+
+
+
+
+
+    public Library(AuthorRepository authorRepository1, StudentRepository studentRepository1, BookRepository bookRepository1, IssueRepository issueRepository1) {
+
+        authorRepository=authorRepository1;
+        studentRepository= studentRepository1;
+        bookRepository=bookRepository1;
+        issueRepository=issueRepository1;
     }
 
     public void addBookData() throws IOException {
@@ -51,7 +63,7 @@ public class Library {
         String category = input.readLine();
         book1.setCategory(category);
         createAuthor();
-        System.out.println("Enter number of book ");
+        System.out.println("Enter number of books: ");
         Integer numberOfBook = scanner.nextInt();
         book1.setQuantity(numberOfBook);
         addABook(book1);
@@ -84,16 +96,61 @@ public class Library {
         bookRepository.save(book);
     }
 
-    public void searchBookByTitle() {
+
+
+    public void searchBookByTitle() throws IOException {
+
+        System.out.println("Enter title: ");
+        String title = input.readLine();
+        if(bookRepository.findBookByTitle(title).isPresent()){
+            book1 = bookRepository.findBookByTitle(title).get();
+            System.out.println("Book ISBN        Book Title       Category       Number of Books");
+            System.out.println(book1.getIsbn() + "     " + " " + book1.getTitle()
+                    +"       " + "    " +book1.getCategory() + "          " + "    " + book1.getQuantity());
+        } else System.out.println("No book with this title.");
     }
 
-    public void searchBookByCategory() {
+    public void searchBookByCategory() throws IOException {
+
+        System.out.println("Enter category: ");
+        String category = input.readLine();
+        List<Book> bookList = bookRepository.findBookByCategory(category);
+        for(int i=0; i< bookList.size();i++){
+            if(bookList.get(i).getCategory().equalsIgnoreCase(category)){
+                System.out.println("Book ISBN        Book Title       Category       Number of Books");
+                System.out.println(bookList.get(i).getIsbn() + "     " + " " + bookList.get(i).getTitle()
+                        +"       " + "    " +bookList.get(i).getCategory() + "          " + "    " + bookList.get(i).getQuantity());
+            } else System.out.println("No book in this category.");
+            }
+        }
+
+
+
+    public void searchBookByAuthor() throws IOException {
+
+        System.out.println("Enter author: ");
+        String authorName = input.readLine();
+        if(authorRepository.findByName(authorName).isPresent()){
+            author1=authorRepository.findByName(authorName).get();
+        }else System.out.println("No book with this author.");
+        if(bookRepository.findBookByAuthor(author1).isPresent()){
+            book1 = bookRepository.findBookByAuthor(author1).get();
+            System.out.println("Book ISBN        Book Title       Category       Number of Books");
+            System.out.println(book1.getIsbn() + "     " + " " + book1.getTitle()
+                    +"       " + "    " +book1.getCategory() + "          " + "    " + book1.getQuantity());
+        }
     }
 
-    public void seacrhBookByAuthor() {
-    }
+    public void listAllBooksAlongWithAuthor() {
 
-    public void listAllbooksAlongWithAutor() {
+        List<Book> bookList = bookRepository.findAll();
+
+        for(int i =0; i < bookList.size(); i++){
+            System.out.println("Book ISBN        Book Title       Category       Number of Books");
+            System.out.println(bookList.get(i).getIsbn() + "     " + " " + bookList.get(i).getTitle()
+                    +"       " + "    " +bookList.get(i).getCategory() + "          " + "    " + bookList.get(i).getQuantity());
+
+        }
     }
 
     public void issueBookToStudent() {
