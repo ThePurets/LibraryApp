@@ -8,11 +8,12 @@ import com.ironLibrary.IronLibrary.Repositories.AuthorRepository;
 import com.ironLibrary.IronLibrary.Repositories.BookRepository;
 import com.ironLibrary.IronLibrary.Repositories.IssueRepository;
 import com.ironLibrary.IronLibrary.Repositories.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -153,9 +154,45 @@ public class Library {
         }
     }
 
-    public void issueBookToStudent() {
+    public void issueBookToStudent() throws IOException {
+        System.out.println("Enter the student's USN");
+        String usn = input.readLine();
+        student1.setUsn(usn);
+        System.out.println("Enter the name");
+        String name = input.readLine();
+        student1.setName(name);
+        studentRepository.save(student1);
+        System.out.println("The student data have been saved");
+        System.out.println("Please enter the book ISBN");
+        String bookIsbn = input.readLine();
+        boolean bookId = bookRepository.findById(bookIsbn).isPresent();
+        if(bookId == true){
+            issue1.setIssueBook(bookRepository.findById(bookIsbn).get());
+            issue1.setIssueStudent(studentRepository.findById(usn).get());
+            LocalDateTime dateTime = LocalDateTime.now();
+            issue1.setIssueDate(String.valueOf(dateTime));
+            LocalDate returnDate = LocalDate.now().plusDays(7);
+            issue1.setReturnDate(String.valueOf(returnDate));
+            issueRepository.save(issue1);
+            System.out.println("Book issued. Return date :" + returnDate );
+        }else {
+            System.out.println("please insert a valid ISBN");
+        }
+
+
+        }
+    public void listBooksByUsn() throws IOException {
+        /*System.out.println("Please enter the Universal Student Number(USN)");
+        String usn = input.readLine();
+        String studentName = studentRepository.getReferenceById(usn).getName();
+        String bookTitle =
+        List<Student> studentList = new ArrayList<>();
+        for (int i = 0; i < studentList.size(); i++) {
+            if(usn.equals())
+
+                //habria mejor que hacer un join de tablas o un metodo en el repositorio?
+        }*/
+    }
     }
 
-    public void listBooksByUsn() {
-    }
-}
+
