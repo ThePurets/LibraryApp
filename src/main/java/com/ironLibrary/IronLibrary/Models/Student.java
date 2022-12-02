@@ -17,6 +17,8 @@ public class Student {
     public Student() {
     }
 
+    //lista de issues
+
     public Student(String usn, String name) {
         this.usn = usn;
         this.name = name;

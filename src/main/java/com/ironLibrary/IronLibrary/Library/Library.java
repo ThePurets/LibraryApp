@@ -84,7 +84,7 @@ public class Library {
             //en caso de no encontrar el Author en la base de datos, creamos uno nuevo
             System.out.println("Enter author email: ");
             String authorEmail = input.readLine();
-            Author newAuthor = new Author(authorName, authorEmail, new ArrayList<>());
+            Author newAuthor = new Author(authorName, authorEmail);
             authorRepository.save(newAuthor);
             book1.setAuthor(newAuthor);
             // añadir el libro a la lista del autor
@@ -143,9 +143,11 @@ public class Library {
         List<Book> bookList = bookRepository.findAll();
 
         for (int i = 0; i < bookList.size(); i++) {
-            System.out.println("Book ISBN        Book Title       Category       Number of Books");
+            author1= bookList.get(i).getAuthor();
+            System.out.println("Book ISBN           Book Title                  Category                Number of Books             Author Name");
             System.out.println(bookList.get(i).getIsbn() + "     " + " " + bookList.get(i).getTitle()
-                    + "       " + "    " + bookList.get(i).getCategory() + "          " + "    " + bookList.get(i).getQuantity());
+                    + "       " + "    " + bookList.get(i).getCategory() + "          " + "           " + bookList.get(i).getQuantity()
+                    + "                     " + bookList.get(i).getAuthor().getName());
 
         }
     }

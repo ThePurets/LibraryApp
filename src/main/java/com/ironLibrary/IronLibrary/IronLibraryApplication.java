@@ -53,8 +53,8 @@ public class IronLibraryApplication implements CommandLineRunner {
 		));
 
 		authorRepository.saveAll(List.of(
-				author1 = new Author("Jack Kerouac","irob@ironlibrary.com", new ArrayList<>()),
-				author2 = new Author("Malcolm Lowry","irob@ironlibrary.com", new ArrayList<>())
+				author1 = new Author("Jack Kerouac","irob@ironlibrary.com"),
+				author2 = new Author("Malcolm Lowry","irob@ironlibrary.com")
 
 		));
 
@@ -68,7 +68,7 @@ public class IronLibraryApplication implements CommandLineRunner {
 				issue = new Issue("01/12/2022","08/12/2022", student, book1)
 		));
 
-		Menu.menuStart(authorRepository, studentRepository, bookRepository,issueRepository);
+		//Menu.menuStart(authorRepository, studentRepository, bookRepository,issueRepository);
 
 		//habrá que añadir el resto de repsositorios
 
