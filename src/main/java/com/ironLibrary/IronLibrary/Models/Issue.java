@@ -73,6 +73,7 @@ public class Issue {
         this.issueBook = issueBook;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

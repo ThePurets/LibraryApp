@@ -178,20 +178,16 @@ public class Library {
         }else {
             System.out.println("please insert a valid ISBN");
         }
-
+          //issue tal vez sobreescribe las entradas
 
         }
     public void listBooksByUsn() throws IOException {
-        /*System.out.println("Please enter the Universal Student Number(USN)");
-        String usn = input.readLine();
-        String studentName = studentRepository.getReferenceById(usn).getName();
-        String bookTitle =
-        List<Student> studentList = new ArrayList<>();
-        for (int i = 0; i < studentList.size(); i++) {
-            if(usn.equals())
+        System.out.println("Please enter the USN");
+        String usn = scanner.nextLine();
+        System.out.println(usn);
+        List<String> objArray = studentRepository.funcionJoin(usn);
+        System.out.println(objArray.get(0).toString());
 
-                //habria mejor que hacer un join de tablas o un metodo en el repositorio?
-        }*/
     }
     }
 
