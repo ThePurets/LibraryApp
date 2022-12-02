@@ -178,7 +178,6 @@ public class Library {
         }else {
             System.out.println("please insert a valid ISBN");
         }
-          //issue tal vez sobreescribe las entradas
 
         }
     public void listBooksByUsn() throws IOException {
@@ -187,7 +186,6 @@ public class Library {
         System.out.println(usn);
         List<String> objArray = studentRepository.funcionJoin(usn);
         System.out.println(objArray.get(0).toString());
-
     }
     }
 
