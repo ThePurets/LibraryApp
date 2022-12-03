@@ -1,6 +1,7 @@
 package com.ironLibrary.IronLibrary.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -18,16 +19,16 @@ public class Author {
 
     private String email;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "author")
     private List<Book> authorBook;
 
     public Author() {
     }
 
-    public Author(String name, String email, List<Book> authorBook) {
+    public Author(String name, String email) {
         this.name = name;
         this.email = email;
-        this.authorBook = new ArrayList<>();
     }
 
     @Override

@@ -86,7 +86,7 @@ public class Library {
             //en caso de no encontrar el Author en la base de datos, creamos uno nuevo
             System.out.println("Enter author email: ");
             String authorEmail = input.readLine();
-            Author newAuthor = new Author(authorName, authorEmail,new ArrayList<>());
+            Author newAuthor = new Author(authorName, authorEmail);
             authorRepository.save(newAuthor);
             book1.setAuthor(newAuthor);
             // añadir el libro a la lista del autor
