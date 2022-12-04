@@ -1,4 +1,4 @@
-<img display= "flex" align-items="center" width="60%" height="50%" src=https://github.com/ThePurets/LibraryApp/blob/Roberto/LibraryApp-Roberto/public%20Static%20Library.jpg>
+<img display= "flex" align-items="center" width="60%" height="50%" src=https://github.com/ThePurets/LibraryApp/blob/Roberto/LibraryApp-Roberto/logo_library.png>
 
 <h1>Library App</h1>
 <h2>Project description</h2>
