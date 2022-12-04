@@ -1,3 +1,5 @@
+![cover](https://github.com/ThePurets/LibraryApp/blob/Roberto/LibraryApp-Roberto/public%20Static%20Library.jpg)
+
 <h1>Library App</h1>
 <h2>Project description</h2>
 <p>Library Management System that helps managing and acquiring data about the books that are being used by students.</p>
