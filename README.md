@@ -1,4 +1,4 @@
-![cover](https://github.com/ThePurets/LibraryApp/blob/Roberto/LibraryApp-Roberto/public%20Static%20Library.jpg)
+<img align="right" width="100" height="100" src=https://github.com/ThePurets/LibraryApp/blob/Roberto/LibraryApp-Roberto/public%20Static%20Library.jpg>
 
 <h1>Library App</h1>
 <h2>Project description</h2>
